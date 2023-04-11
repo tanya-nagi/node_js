@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
-    <link rel="stylesheet" href="/css/home.css">
-</head>
-<body>
-    <h1>render from ejs</h1>
-    <ul>
-        <% for (let i of contact_list){ %>
-            <li>
-                <p><%=i.name%></p>
-                <p><%=i.phone%></p>
-            </li>
+<html>
+    <head>
+        <title>
+            <%= locals.title%>
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
 
-        <%}%>
-    </ul>
+        <div>
+            <ul>
+                   
+                <% for (let i of contact_list) { %> 
+                   <div class="contact"> 
+                        <li>
+                            <p><%= i.name %></p>
+                            <p><%= i.phone %></p>
+                        </li>
+                    </div>
+                    <div class="delete-button">
+                        <a href="/delete-contact/?phone=<%= i.phone %>">
+                            delete
+                        </a>
+                    </div>
+                <% } %>
+            </ul>
+        </div>
 
-    <form action="/create-contact" method="POST">
-        <input type="text" name="name" placeholder="Enter Name">
-        <input type="number" name="phone" placeholder="Enter Phone">
-
-        <button type="submit">Add Contact</button>
-
-    </form>
-
-    <script type="text/javacript" src="/js/home.js"> </script>
-</body>
+        <form action="/create-contact" method="POST">
+            <input type="text" name="name" placeholder="Enter name" required>
+            <input type="number" name="phone" placeholder="Enter phone" required>
+            <button type="submit">Add contact</button>
+        </form>
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
 </html>

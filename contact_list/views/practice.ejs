@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title%></title>
-</head>
-<body>
-    <h1>play</h1>
-    <ul>
-        <% for(let i=1;i<6;i++){%>
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+    </head>
+    <body>
+        <h1>Playground</h1>
+
+        <ul>
+            <% for (let i=1; i<10; i++) { %>
             <li>
-                <%= i%>
+                <%= i %>
             </li>
+            <%}%>
+        </ul>
 
-        <%}%>
+        <% if (true){ %>
+            <h1>It's true!</h1>
+            
+        <% }else{ %>
+            <p>It's false :(</p>
+        <% } %>
 
-        <%if(true){%>
-            <h1>hey</h1>
 
-        <%}else{%>
-            <h2>false</h2>
-
-        <%}%>
-    </ul>
-    
-</body>
+    </body>
 </html>
