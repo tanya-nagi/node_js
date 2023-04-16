@@ -3,6 +3,7 @@ const path = require('path')
 const port = 8000
 
 const db = require('./config/mongoose')
+const Contact = require('./models/contact')
 
 const app = express();
 
@@ -37,10 +38,17 @@ app.get('/',function(req,res){
     //send the data to the server whatever we need to display in the server
     // res.send('Cool , we are in the server')
 
-    return res.render('home',{
-        title:'my contact list', 
-        contact_list:contactList
-    })
+    Contact.find().then(function(contact){
+        return res.render('home',{
+            title:'my contact list', 
+            contact_list:contact
+        })
+    }).catch((err)=>console.log(err,'Error in fetching the data'))
+
+    // return res.render('home',{
+    //     title:'my contact list', 
+    //     contact_list:contactList
+    // })
 })
 
 
@@ -51,8 +59,12 @@ app.get('/practice',function(req,res){
 })
 
 app.post('/create-contact',function(req,res){
-    return res.redirect('/practice')
-    // console.log(req.body)
+    Contact.create({ name: req.body.name,
+        phone: req.body.phone })
+    .then(result => {
+        console.log(result)
+        res.redirect('/')
+    })
 })
 
 
@@ -65,16 +77,26 @@ app.listen(port,function(err,data){
 })
 
 app.get('/delete-contact/', function(req, res){
-    console.log(req.query);
-    let phone = req.query.phone
+    //get the id from query parameter in url
+    let id = req.query.id
+    //finding the data  using id in db
+    Contact.findByIdAndDelete(id).then(function(){
+        return res.redirect('back'); 
+    }).catch((err)=>console.log("error in deleting",err))
 
-    let contactindex = contactList.findIndex(contact => contact.phone == phone);
 
-    if(contactindex != -1){
-        contactList.splice(contactindex, 1);
-    }
 
-    return res.redirect('back');
+
+    // console.log(req.query);
+    // let phone = req.query.phone
+
+    // let contactindex = contactList.findIndex(contact => contact.phone == phone);
+
+    // if(contactindex != -1){
+    //     contactList.splice(contactindex, 1);
+    // }
+
+    // return res.redirect('back');
 });
 
 
