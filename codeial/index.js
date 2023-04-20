@@ -7,6 +7,13 @@ const expressLayout = require('express-ejs-layouts')
 //It will always defined on the top because it should work before view engine 
 app.use(expressLayout)
 
+//setting the styles and scripts from layout
+app.set('layout extractStyles',true)
+app.set('layout extractScripts',true)
+
+
+app.use(express.static('./assets'))
+
 //use express router
 app.use('/',require('./routes/index'))
 
