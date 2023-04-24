@@ -3,6 +3,8 @@ const app = express()
 const port = 8000
 
 const expressLayout = require('express-ejs-layouts')
+const db = require('./config/mongoose')
+const Codeial = require('./models/user')
 
 //It will always defined on the top because it should work before view engine 
 app.use(expressLayout)
@@ -20,7 +22,6 @@ app.use('/',require('./routes/index'))
 //set up view engine
 app.set('view engine','ejs')
 app.set('views','./views')
-
 
 app.listen(port,function(err){
     if(err){
