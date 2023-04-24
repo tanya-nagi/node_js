@@ -1,16 +1,23 @@
 const mongoose = require('mongoose');
 
-const codeialSchema = new mongoose.Schema({
-    name:{
+const userSchema = new mongoose.Schema({
+    email:{
         type: String,
-        required: true // validation should be true
+        required: true, // validation should be true means it is required
+        unique: true
     },
-    phone:{
+    password:{
+        type: String,
+        required : true
+    },
+    name:{
         type: String,
         required : true
     }
+},{
+    timestamps: true // when we have created the db and when we have updated it
 });
 
-const Codeial = mongoose.model('Codeial',codeialSchema )
-module.exports= Codeial
+const User = mongoose.model('User_Schema',userSchema )
+module.exports= User
 

@@ -5,6 +5,11 @@ const usersController = require('../controller/users_controller')
 
 router.get('/profile',usersController.profile)
 
+//creating route for signup
+router.get('/sign-up',usersController.signUp)
+
+//creating route for signin
+router.get('/sign-in',usersController.signIn)
 
 
-module.exports= router;
+module.exports = router;

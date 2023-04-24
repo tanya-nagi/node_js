@@ -4,7 +4,7 @@ const port = 8000
 
 const expressLayout = require('express-ejs-layouts')
 const db = require('./config/mongoose')
-const Codeial = require('./models/user')
+const User = require('./models/user')
 
 //It will always defined on the top because it should work before view engine 
 app.use(expressLayout)
