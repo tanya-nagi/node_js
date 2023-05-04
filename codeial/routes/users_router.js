@@ -13,5 +13,10 @@ router.get('/sign-in',usersController.signIn)
 
 router.post('/create',usersController.create)
 
+//creating route for signup
+
+router.post('/create-session',usersController.createSession)
+
+
 
 module.exports = router;
