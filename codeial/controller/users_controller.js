@@ -25,7 +25,7 @@ module.exports.create = function(req,res){
     if(req.body.password !== req.body.confirm_password){
         return res.redirect('back')
     }
-
+    console.log(req.body.email,'---email');
     User.findOne({email: req.body.email}).then((user)=>{
         console.log(user,'-----user')
         if(!user){
@@ -40,7 +40,7 @@ module.exports.create = function(req,res){
         else{
             return res.redirect('back')
         }
-    }).catch(()=>{
+    }).catch((err)=>{
         if(err){
             console.log('error in finding user that is logged in');
         }
@@ -50,5 +50,5 @@ module.exports.create = function(req,res){
 
 //get the sign-in data
 module.exports.createSession = function(req,res){
-    //todo later
+    return res.redirect('/')
 }
