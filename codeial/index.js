@@ -25,15 +25,11 @@ app.set('layout extractScripts',true)
 
 app.use(express.static('./assets'))
 
-//use express router
-app.use('/',require('./routes/index'))
-
 //set up view engine
 app.set('view engine','ejs')
 app.set('views','./views')
 
 
-//
 app.use(session({
     name:'codeial',
     //TODO Change the secret before the deployment in production mode
@@ -48,6 +44,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
+//use express router
+app.use('/',require('./routes'))
 app.listen(port,function(err){
     if(err){
         console.log(`Error in porting:${err}`);

@@ -4,7 +4,7 @@ const User = require('../models/user');
 const LocalStrategy = require('passport-local').Strategy;
 
 //authentication using passport
-passport.use(new LocalStrategy({userNamefield:'email'},function(email,password,done){
+passport.use(new LocalStrategy({userNameField:'email'},function(email,password,done){
 console.log('email,password')
 console.log(email,password)
     //find the user and establish the identity
@@ -43,4 +43,4 @@ passport.deserializeUser((id,done)=>{
     })
 })
 
-module.exports = passport;
+
