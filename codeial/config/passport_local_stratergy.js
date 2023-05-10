@@ -4,9 +4,7 @@ const User = require('../models/user');
 const LocalStrategy = require('passport-local').Strategy;
 
 //authentication using passport
-passport.use(new LocalStrategy({userNameField:'email'},function(email,password,done){
-console.log('email,password')
-console.log(email,password)
+passport.use(new LocalStrategy({usernameField:'email'},function(email,password,done){
     //find the user and establish the identity
     User.findOne({email: email}).then((user)=>{
         if(!user || user.password !== password){
