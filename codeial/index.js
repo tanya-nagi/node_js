@@ -13,7 +13,7 @@ const User = require('./models/user')
 const passport = require('passport')
 const passportLocal = require('./config/passport_local_stratergy')
 // used for storing data into session permanentally so that if server restart data will be there
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 //It will always defined on the top because it should work before view engine 
 app.use(express.urlencoded({extended: true}))
@@ -44,7 +44,7 @@ app.use(session({
     },
     store: MongoStore.create(
         {
-            mongooseConnection: db,
+            mongoUrl: 'mongodb://127.0.0.1/codeial_minor',
             autoRemove: 'disabled'
         },
         function(err){
