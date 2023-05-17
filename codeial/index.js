@@ -36,7 +36,7 @@ app.use(session({
     secret: 'something',
     //want to know about this
     saveUninitialized: false,
-    resave:false,
+    resave:false, // to save the data again and again
     cookie:{
         maxAge:(1000*60*100)
     }
@@ -44,6 +44,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
+
+app.use(passport.setAuthenticateUser);
 //use express router
 app.use('/',require('./routes'))
 app.listen(port,function(err){
