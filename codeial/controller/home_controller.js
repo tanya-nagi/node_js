@@ -5,7 +5,6 @@ module.exports.home = function (req, res) {
   // res.cookie('use_name',25)
 
   Post.find({}).then((posts) => {
-    console.log(posts, "---post");
     return res.render("home", {
       title: "Codeial | Home",
       posts: posts,
