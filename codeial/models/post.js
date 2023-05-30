@@ -12,12 +12,12 @@ const postSchema = new mongoose.Schema({
     comments:[
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref:'comment'
+            ref:'Comment'
         }
     ]
 },{
     timestamps: true
 });
 
-const Post = mongoose.model('Post_Schema',postSchema)
+const Post = mongoose.model('Post',postSchema)
 module.exports = Post

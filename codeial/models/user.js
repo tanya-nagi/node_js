@@ -18,6 +18,6 @@ const userSchema = new mongoose.Schema({
     timestamps: true // when we have created the db and when we have updated it
 });
 
-const User = mongoose.model('User_Schema',userSchema )
+const User = mongoose.model('User',userSchema )
 module.exports= User
 
