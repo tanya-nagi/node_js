@@ -14,21 +14,20 @@ module.exports.create = function (req, res) {
     });
 };
 
-module.exports.destroy = function(req, res){
-  Post.findById(req.params.id).then( 
-    (post)=>{
-      console.log(post,'---post');
-      // .id means converting the object id into string
+module.exports.destroy = async function(req, res){
+  try{
+    const post = await
+    Post.findByIdAndDelete(req.params.id)
+    if(post && post.user === req.user.id){
+      await Comment.deleteMany({post:req.params.id});
+      return res.redirect("back")
+    }else{
+      return res.redirect("back")
 
-      if(post.user == req.user.id){
-        post.remove();
-
-        Comment.deleteMany({post: req.params.id}, function(err){
-          return res.redirect('back');
-        });
-      }else{
-        return res.redirect('back');
-      }
-
-  });
+    }
+  }
+  catch(error){
+    return res.redirect("back")
+  }
+  
 }
