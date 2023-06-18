@@ -3,9 +3,20 @@
 <!-- adding layout content --> 
     <h1>Codeial / Profile Page</h1>
 
-    <p><%= profile_of_user.name%></p>
+    
+    <% if(user.id===profile_of_user.id){%>
+       <!-- if user matches show form -->
+        <form action="/users/update/<%= profile_of_user.id%>" method="post">
+            <input type="text" name="name" placeholder="Your Name" value="<%= profile_of_user.name%>" required>
+            <input type="text" name="email" placeholder="Your Email" value="<%= profile_of_user.email%>" required>
+ <input type="submit" value="Update">
+        </form>
+        <%}else{%>
+            <!-- else show profile  -->
+            <p><%= profile_of_user.name%></p>
     <p><%= profile_of_user.email%></p>
 
 
+            <%}%>
    
 

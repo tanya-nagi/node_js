@@ -6,6 +6,8 @@ const passport = require('passport')
 const usersController = require('../controller/users_controller')
 
 router.get('/profile/:id',passport.checkUserAuthentication,usersController.profile)
+router.post('/update/:id',passport.checkUserAuthentication,usersController.update)
+
 
 //creating route for signup
 router.get('/sign-up',usersController.signUp)
