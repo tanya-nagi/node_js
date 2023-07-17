@@ -15,6 +15,10 @@ const passportLocal = require('./config/passport_local_stratergy')
 // used for storing data into session permanentally so that if server restart data will be there
 const MongoStore = require('connect-mongo');
 
+const flash = require('connect-flash')
+
+const customMiddleware = require('./config/middleware')
+
 //It will always defined on the top because it should work before view engine 
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
@@ -57,6 +61,10 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 app.use(passport.setAuthenticateUser);
+
+app.use(flash());
+app.use(customMiddleware.setFlash)
+
 //use express router
 app.use('/',require('./routes'))
 app.listen(port,function(err){
